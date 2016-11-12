@@ -19,16 +19,32 @@ namespace MerzApp
             InitializeComponent();
         }
 
+
+        /// <summary>
+        /// Function which is started, after the form is loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        /// <summary>
+        /// Turn off the app.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuQuit_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
         }
 
+        /// <summary>
+        /// This loads data about videos from the file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void menuLoad_Click(object sender, EventArgs e)
         {
             openFile = new OpenFileDialog();
@@ -51,11 +67,16 @@ namespace MerzApp
                         {
                             using (reader = new StreamReader(stream))
                             {
+                                ListViewItem items;
                                 String line = reader.ReadLine();
-                                ListViewItem items = new ListViewItem(line);
-                                Debug.WriteLine(line);
-                                items.SubItems.Add(line);
-                                listOfFiles.Items.Add(items);
+                                while (line.Length!=0)
+                                {
+                                    items = new ListViewItem(line);
+                                    Debug.WriteLine(line);
+                                    items.SubItems.Add(line);
+                                    listOfFiles.Items.Add(items);
+                                    line = reader.ReadLine();
+                                }
                             }
                         }
                         
