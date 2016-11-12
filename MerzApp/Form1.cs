@@ -16,14 +16,17 @@ namespace MerzApp
     public partial class Form1 : Form
     {
 
-        private int numOfFiles = 0;
+        private int numOfFiles;
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private void startPlay()
         {
+            mediaPlayer.currentPlaylist.clear();
             ListViewItem it;
             String filePath;
             IWMPMedia videoFile;
             IWMPPlaylist myPlaylist = mediaPlayer.playlistCollection.newPlaylist("playlist");
+            
             Debug.WriteLine(mediaPlayer.openState);
             mediaPlayer.settings.setMode("loop", true);
             
@@ -54,7 +57,7 @@ namespace MerzApp
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            log.Info("App started");
         }
 
         /// <summary>
@@ -77,11 +80,13 @@ namespace MerzApp
             openFile = new OpenFileDialog();
             Stream stream = null;
             TextReader reader = null;
+            numOfFiles = 0;
 
             openFile.InitialDirectory = @"c:\";
             openFile.Filter = "txt files (*.txt)|*.txt|config files (*.config)|*.config|All files *.*|*.*";
             openFile.FilterIndex = 1;
             openFile.RestoreDirectory = true;
+            listOfFiles.Items.Clear();
 
             if(openFile.ShowDialog() == DialogResult.OK)
             {
@@ -131,10 +136,7 @@ namespace MerzApp
 
         private void mediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
-            if (mediaPlayer.playState == WMPPlayState.wmppsReady)
-            {
-                
-            }
+
         }
     }
 }
