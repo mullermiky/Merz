@@ -9,11 +9,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using WMPLib;
 
 namespace MerzApp
 {
     public partial class Form1 : Form
     {
+
+        private int numOfFiles = 0;
+
+        private void startPlay()
+        {
+            ListViewItem it;
+            String filePath;
+            IWMPMedia videoFile;
+            IWMPPlaylist myPlaylist = mediaPlayer.playlistCollection.newPlaylist("playlist");
+            Debug.WriteLine(mediaPlayer.openState);
+            mediaPlayer.settings.setMode("loop", true);
+            
+
+            for (int i = 1; i<=numOfFiles; i++)
+            {
+                it = listOfFiles.FindItemWithText("" + i);
+                filePath = it.Text;
+                videoFile = mediaPlayer.newMedia(filePath);
+                myPlaylist.appendItem(videoFile);
+            }
+            mediaPlayer.currentPlaylist = myPlaylist;
+            
+            
+            
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -70,14 +97,16 @@ namespace MerzApp
                                 
                                 String line = reader.ReadLine();
                                 String[] splitedLine;
-                                while (line.Length!=0)
+                                while (line!=null)
                                 {
+                                    numOfFiles += 1;
                                     splitedLine = line.Split('#');
                                     listOfFiles.Items.Add(splitedLine[0]).SubItems.Add(splitedLine[1]);
                                     Debug.WriteLine(line);
                                     line = reader.ReadLine();
                                     
                                 }
+                                startPlay();
                             }
                         }
                         
@@ -87,6 +116,24 @@ namespace MerzApp
                 {
                     
                 }
+            }
+        }
+
+        private void mediaPlayer_MediaError(object sender, AxWMPLib._WMPOCXEvents_MediaErrorEvent e)
+        {
+
+        }
+
+        private void mediaPlayer_OpenStateChange(object sender, AxWMPLib._WMPOCXEvents_OpenStateChangeEvent e)
+        {
+            Debug.WriteLine(mediaPlayer.openState);
+        }
+
+        private void mediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (mediaPlayer.playState == WMPPlayState.wmppsReady)
+            {
+                
             }
         }
     }
