@@ -67,15 +67,16 @@ namespace MerzApp
                         {
                             using (reader = new StreamReader(stream))
                             {
-                                ListViewItem items;
+                                
                                 String line = reader.ReadLine();
+                                String[] splitedLine;
                                 while (line.Length!=0)
                                 {
-                                    items = new ListViewItem(line);
+                                    splitedLine = line.Split('#');
+                                    listOfFiles.Items.Add(splitedLine[0]).SubItems.Add(splitedLine[1]);
                                     Debug.WriteLine(line);
-                                    items.SubItems.Add(line);
-                                    listOfFiles.Items.Add(items);
                                     line = reader.ReadLine();
+                                    
                                 }
                             }
                         }
