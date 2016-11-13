@@ -147,8 +147,10 @@ namespace MerzApp
             String currentFile;
             if (mediaPlayer.openState == WMPOpenState.wmposMediaOpen)
             {
+                
                 currentFile = mediaPlayer.currentMedia.name;
                 log.Info("started playing " + currentFile);
+                labelFileName.Text = currentFile;
             }
         }
 
@@ -175,6 +177,17 @@ namespace MerzApp
                 currentFile = mediaPlayer.currentMedia.name;
                 log.Info("ended playing " + currentFile);
             }
+        }
+
+        /// <summary>
+        /// changing size of components inside form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            mediaPlayer.Size = new Size(this.Size.Width - 39, this.Size.Height - 210);
+            listOfFiles.Size = new Size(this.Size.Width - 39, listOfFiles.Size.Height);
         }
     }
 }

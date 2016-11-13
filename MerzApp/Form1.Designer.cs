@@ -38,6 +38,7 @@
             this.fileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sequence = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
+            this.labelFileName = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.menu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(306, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,7 +88,7 @@
             this.listOfFiles.GridLines = true;
             this.listOfFiles.Location = new System.Drawing.Point(12, 27);
             this.listOfFiles.Name = "listOfFiles";
-            this.listOfFiles.Size = new System.Drawing.Size(260, 104);
+            this.listOfFiles.Size = new System.Drawing.Size(282, 104);
             this.listOfFiles.TabIndex = 1;
             this.listOfFiles.UseCompatibleStateImageBehavior = false;
             this.listOfFiles.View = System.Windows.Forms.View.Details;
@@ -105,21 +106,31 @@
             // mediaPlayer
             // 
             this.mediaPlayer.Enabled = true;
-            this.mediaPlayer.Location = new System.Drawing.Point(12, 137);
+            this.mediaPlayer.Location = new System.Drawing.Point(12, 159);
             this.mediaPlayer.Name = "mediaPlayer";
             this.mediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("mediaPlayer.OcxState")));
-            this.mediaPlayer.Size = new System.Drawing.Size(260, 229);
+            this.mediaPlayer.Size = new System.Drawing.Size(282, 237);
             this.mediaPlayer.TabIndex = 2;
             this.mediaPlayer.OpenStateChange += new AxWMPLib._WMPOCXEvents_OpenStateChangeEventHandler(this.mediaPlayer_OpenStateChange);
             this.mediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.mediaPlayer_PlayStateChange);
             this.mediaPlayer.PlaylistChange += new AxWMPLib._WMPOCXEvents_PlaylistChangeEventHandler(this.mediaPlayer_PlaylistChange);
             this.mediaPlayer.MediaError += new AxWMPLib._WMPOCXEvents_MediaErrorEventHandler(this.mediaPlayer_MediaError);
             // 
+            // labelFileName
+            // 
+            this.labelFileName.AutoSize = true;
+            this.labelFileName.Location = new System.Drawing.Point(13, 140);
+            this.labelFileName.Name = "labelFileName";
+            this.labelFileName.Size = new System.Drawing.Size(13, 13);
+            this.labelFileName.TabIndex = 3;
+            this.labelFileName.Text = "--";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 378);
+            this.ClientSize = new System.Drawing.Size(306, 408);
+            this.Controls.Add(this.labelFileName);
             this.Controls.Add(this.mediaPlayer);
             this.Controls.Add(this.listOfFiles);
             this.Controls.Add(this.menuStrip1);
@@ -127,6 +138,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mediaPlayer)).EndInit();
@@ -146,6 +158,7 @@
         private System.Windows.Forms.ColumnHeader fileName;
         private System.Windows.Forms.ColumnHeader sequence;
         private AxWMPLib.AxWindowsMediaPlayer mediaPlayer;
+        private System.Windows.Forms.Label labelFileName;
     }
 }
 
