@@ -64,14 +64,14 @@
             // menuLoad
             // 
             this.menuLoad.Name = "menuLoad";
-            this.menuLoad.Size = new System.Drawing.Size(152, 22);
+            this.menuLoad.Size = new System.Drawing.Size(100, 22);
             this.menuLoad.Text = "Load";
             this.menuLoad.Click += new System.EventHandler(this.menuLoad_Click);
             // 
             // menuQuit
             // 
             this.menuQuit.Name = "menuQuit";
-            this.menuQuit.Size = new System.Drawing.Size(152, 22);
+            this.menuQuit.Size = new System.Drawing.Size(100, 22);
             this.menuQuit.Text = "Quit";
             this.menuQuit.Click += new System.EventHandler(this.menuQuit_Click);
             // 
@@ -111,6 +111,7 @@
             this.mediaPlayer.Size = new System.Drawing.Size(260, 229);
             this.mediaPlayer.TabIndex = 2;
             this.mediaPlayer.OpenStateChange += new AxWMPLib._WMPOCXEvents_OpenStateChangeEventHandler(this.mediaPlayer_OpenStateChange);
+            this.mediaPlayer.PlaylistChange += new AxWMPLib._WMPOCXEvents_PlaylistChangeEventHandler(this.mediaPlayer_PlaylistChange);
             this.mediaPlayer.MediaError += new AxWMPLib._WMPOCXEvents_MediaErrorEventHandler(this.mediaPlayer_MediaError);
             // 
             // Form1
