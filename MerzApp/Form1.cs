@@ -134,7 +134,7 @@ namespace MerzApp
         private void mediaPlayer_MediaError(object sender, AxWMPLib._WMPOCXEvents_MediaErrorEvent e)
         {
             String currentFile = mediaPlayer.currentMedia.name;
-            log.Error("error while playing file " + currentFile);
+            log.Error("error while playing file " + currentFile);   
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace MerzApp
             if (mediaPlayer.openState == WMPOpenState.wmposMediaOpen)
             {
                 currentFile = mediaPlayer.currentMedia.name;
-                log.Info("start playing " + currentFile);
+                log.Info("started playing " + currentFile);
             }
         }
 
@@ -159,7 +159,22 @@ namespace MerzApp
         /// <param name="e"></param>
         private void mediaPlayer_PlaylistChange(object sender, AxWMPLib._WMPOCXEvents_PlaylistChangeEvent e)
         {
-            Debug.WriteLine(mediaPlayer.currentPlaylist.name);
+            log.Info("sequence changed to " + mediaPlayer.currentPlaylist.name);
+        }
+
+        /// <summary>
+        /// This handles Play states for loging.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            String currentFile;
+            if (mediaPlayer.playState == WMPPlayState.wmppsMediaEnded)
+            {
+                currentFile = mediaPlayer.currentMedia.name;
+                log.Info("ended playing " + currentFile);
+            }
         }
     }
 }

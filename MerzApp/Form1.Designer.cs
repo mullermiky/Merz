@@ -111,6 +111,7 @@
             this.mediaPlayer.Size = new System.Drawing.Size(260, 229);
             this.mediaPlayer.TabIndex = 2;
             this.mediaPlayer.OpenStateChange += new AxWMPLib._WMPOCXEvents_OpenStateChangeEventHandler(this.mediaPlayer_OpenStateChange);
+            this.mediaPlayer.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.mediaPlayer_PlayStateChange);
             this.mediaPlayer.PlaylistChange += new AxWMPLib._WMPOCXEvents_PlaylistChangeEventHandler(this.mediaPlayer_PlaylistChange);
             this.mediaPlayer.MediaError += new AxWMPLib._WMPOCXEvents_MediaErrorEventHandler(this.mediaPlayer_MediaError);
             // 
